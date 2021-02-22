@@ -1,0 +1,25 @@
+1. Problem statement:
+
+2. Data Preprocessing:
+
+3. Machine learning model:
+
+4. Preliminary results:
+
+5. Next steps:
+
+
+
+
+
+#Jules' comment#
+Either we use same or different dataset for second part of the algorithm. I found a bigger one.
+Second part will probably need to be unsupervised, where we compare the ratio of buzzwords between articles with maybe similar titles/dates as the current one.
+So we have to implement 1. Classification model for fake/real news and 2. Other model for article comparison. (not necessarily ML from what I read online!)
+Both models will need pretty much the same pre-processing, so it would be beneficial to use the same dataset. 
+For pre-processing, we try: tf-idf vectorization, n-gramming, lemmatizing/stemming, stopwords removal
+For the first model, we should try VSM for this deliverable.
+For second model, we try one of these I found online for text comparison: Cosine Angular Separation, Hamming Distance, Latent Semantic Analysis (LSA) 
+or Latent Semantic Indexing (LSI) (none of these are machine learning though, but text-similarity measures)
+
+
