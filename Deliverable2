@@ -1,12 +1,16 @@
 1. Problem statement:
 
-2. Data Preprocessing:
+2. Data Preprocessing: For now only using Tf-Idf Vectorizing. Realized that removing stop words might not be 
+ideal as differences in the richness of the vocabulary and repetition could be a feature in itself in determining
+the truth value of the article.
 
-3. Machine learning model:
+3. Machine learning model: Went with support vector classifiers. 
 
 4. Preliminary results:
 
-5. Next steps:
+5. Next steps: Considering the title as a seperate feature where the pre-processing should be different, 
+as minute differences in the title might have bigger impacts (bigger use of punctuation, caps, etc.)
+Try different models and types of pre-processing. Start looking at how to do article comparison.
 
 
 
