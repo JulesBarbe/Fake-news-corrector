@@ -8,9 +8,11 @@ the truth value of the article.
 
 4. Preliminary results:
 
-5. Next steps: Considering the title as a seperate feature where the pre-processing should be different, 
-as minute differences in the title might have bigger impacts (bigger use of punctuation, caps, etc.)
-Try different models and types of pre-processing. Start looking at how to do article comparison.
+5. Next steps: Considering the title as a seperate feature where the pre-processing should be different, as minute differences in the title might have a big impact.
+For this we could simply run a different algorithm, where we also consider the number of punctuation signs, number of letter in caps, etc.
+Try different models and types of pre-processing. 
+Start looking at how to do article comparison. This problem comes out as a non ML problem, but a text comparison one: here are some techniques we should try: 
+Cosine Angular Separation, Hamming Distance, Latent Semantic Analysis (LSA), Latent Semantic Indexing (LSI)
 
 
 
