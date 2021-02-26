@@ -5,9 +5,11 @@ import nltk
 import sklearn as sk
 import sklearn.feature_extraction.text as ft
 import sklearn.linear_model as skl
+import sklearn.metrics as skm
+from time import time
 
 
-#Data exploration
+#DATA EXPLORATION:
 
 true = pd.read_csv("True.csv", header=None)
 fake = pd.read_csv("Fake.csv", header=None)
@@ -19,6 +21,7 @@ true = true.drop(true.index[0])
 fake.columns = fake.iloc[0]
 fake = fake.drop(fake.index[0])
 
+#Take a look at the data
 print("=============================================================================================================================================================================")
 print("\nTrue dataset: \n")
 print ("Shape: ", true.shape)
@@ -44,56 +47,64 @@ fake = fake.drop(fake.columns[[0,2,3]], axis=1)
 true["label"] = 1
 fake["label"] = -1
 
-
 #Merge both datasets into one
 dataset = pd.concat([true, fake], ignore_index = True)
 
+#Final dataset: one column for the article text, one column for the truth value
 print("Modified dataset with labels: \n", dataset)
 
-#Drop the labels into seperate dataframe
-labels = dataset.drop("text", axis=1)
+#Using the tfidf vectorizer from sklearn, includes stop word_removal
+#Initialize the `tfidf_vectorizer` 
+tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english') 
+
+#Process the text in dataset 
+t0 = time()
+print("Vectorizing:")
+tfidf_data = tfidf_vectorizer.fit_transform(dataset['text'])
+vectorizing_time = time() - t0
+print("vectorizing time: %0.3f" %vectorizing_time)
 
 
-#Extract training and test set
-#Going for a 80/20 split between train/test (will get validation from train)
-#dataset = dataset.sample(n = dataset.shape[0], random_state=1)
-X_train, X_test, y_train, y_test = sk.model_selection.train_test_split(dataset['text'], labels, test_size = 0.2, random_state = 69)
+#DATA SEPERATION:
+#Going for a 80/20 split between train/test 
+X_train, X_test, y_train, y_test = sk.model_selection.train_test_split(tfidf_data, dataset['label'], test_size = 0.2, random_state = 69)
 
 
-#Extract validation the same way with X_train and y_train
-X_train, X_valid, y_train, y_valid = sk.model_selection.train_test_split(X_train, y_train, test_size = 0.1, random_state = 420)
-
-print("\n\nNow we have training, validation and test sets:\n")
+print("\nNow we have training, validation and test sets:\n")
 print("X_train = ", X_train.shape)
 print("y_train = ", y_train.shape)
-print("X_valid = ", X_valid.shape)
-print("y_valid = ", y_valid.shape)
 print("X_test = ", X_test.shape)
 print("y_test = ", y_test.shape)
 
-# Initialize the `tfidf_vectorizer` 
-tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english') 
 
-# Fit and transform the training data 
-tfidf_train = tfidf_vectorizer.fit_transform(X_train) 
-tfidf_valid = tfidf_vectorizer.fit_transform(X_valid)
-tfidf_test = tfidf_vectorizer.fit_transform(X_test)
-
-#print(tfidf_train)
 
 #USING SGD CLASSIFIER
-#Default loss being a SVM, l2 regularization term, optimal learning rate 
+#Default loss being a SVM, l2 regularization term, optimal learning rate (validation set and learning rate testing
+#included in the model)
 clf = skl.SGDClassifier()
 
+#Train the model
+t0 = time()
+res = clf.fit(X_train, y_train.values.ravel())
+train_time = time() - t0
+print("\nTrain time: %0.3f" % train_time)
 
+#No need for validation, automatically done inside SGD using optimal learning rate
 
-res = clf.fit(tfidf_train, y_train.values.ravel())
+#Run on test set
+t0 = time()
+y_test_pred = clf.predict(X_test)
+test_time = time() - t0
+print("\nTest time: %0.3f\n" % test_time)
 
-params = res.get_params()
+#Use confusion matrix to evaluate classification accuracy
+cmatrix = skm.confusion_matrix(y_test, y_test_pred, labels=[1,-1])
+print("Confusion matrix [True, Fake]:\n ", cmatrix)
 
+#Use accuracy metric
+score = skm.accuracy_score(y_test, y_test_pred)
+print("\nAccuracy: %03f" %score)
 
-
-#Show confusion matrix
 
 
 
