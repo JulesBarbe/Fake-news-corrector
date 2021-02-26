@@ -1,30 +1,20 @@
 1. Problem statement:
 
-2. Data Preprocessing: For now only using Tf-Idf Vectorizing. Realized that removing stop words might not be 
-ideal as differences in the richness of the vocabulary and repetition could be a feature in itself in determining
-the truth value of the article.
+2. Data Preprocessing: We are using tf-idf vectorizing with stop word removal included. This cleans up the data and keeps only words relevant throughout many articles.
 
-3. Machine learning model: Went with support vector classifiers. 
+3. Machine learning model: We are using an SGD classifier based on an SVM with stochastic gradient descent optimization. It is also using an optimal learning rate which calibrates itself automatically during training.
 
-4. Preliminary results:
+4. Preliminary results: Our results are very good for now, with training accuracy constantly over 99 percent. As the model is very fast, we have been able to train it many different times on different splits and we always get this level of accuracy.
+As the hyperparamater training is done automatically through optimal learning rate, we have decided to also test the model on different splits of the test set (retraining the model from scratch everytime, obviously), where we always get an accuracy of at least 98%.
+For a test set of about 9000 samples, we always get less than a 100 false positives and negatives on every run.
 
-5. Next steps: Considering the title as a seperate feature where the pre-processing should be different, as minute differences in the title might have a big impact.
-For this we could simply run a different algorithm, where we also consider the number of punctuation signs, number of letter in caps, etc.
-Try different models and types of pre-processing. 
-Start looking at how to do article comparison. After looking at different implementations, Latent Semantic Analysis (LSA) with use of TFIDF and Singular Value Decomposition (SVD) seems optimal.
+5. Next steps: 
+1. For this model we only kept the article body of text as a feature, but it would be interesting to include the title in the model. However the pre-processing on it should be different, as we consider that stop words, caps and punctuation to be of relevant importance
+when it comes to the title of fake/true articles. Either we could run a seperate model on the title (which would not take long at all), or we could preprocess the titles seperately and add specific weights to the features we take out of it.
+2. Even though our results are very good, we should still try to implement different models, and do so in a more automated way (like having a seperate preprocessing function and a training function that could iterate through different models from sklearn)
+3. We also have to tackle article comparison which we will use in our final product. After doing research, we came to the conclusion that Latent Semantic Analysis (LSA) with Singular Value Decomposition (SVD) would be optimal. This can be done fast and on the fly to compare
+articles deemed fake to alternate articles we find online from trusted databases.
 
 
-
-
-
-#Jules' comment#
-Either we use same or different dataset for second part of the algorithm. I found a bigger one.
-Second part will probably need to be unsupervised, where we compare the ratio of buzzwords between articles with maybe similar titles/dates as the current one.
-So we have to implement 1. Classification model for fake/real news and 2. Other model for article comparison. (not necessarily ML from what I read online!)
-Both models will need pretty much the same pre-processing, so it would be beneficial to use the same dataset. 
-For pre-processing, we try: tf-idf vectorization, n-gramming, lemmatizing/stemming, stopwords removal
-For the first model, we should try VSM for this deliverable.
-For second model, we try one of these I found online for text comparison: Cosine Angular Separation, Hamming Distance, Latent Semantic Analysis (LSA) 
-or Latent Semantic Indexing (LSI) (none of these are machine learning though, but text-similarity measures)
 
 

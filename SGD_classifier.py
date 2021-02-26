@@ -21,8 +21,13 @@ true = true.drop(true.index[0])
 fake.columns = fake.iloc[0]
 fake = fake.drop(fake.index[0])
 
+class_distrib = true.shape[0]/(true.shape[0]+fake.shape[0])
+
+
+
 #Take a look at the data
 print("=============================================================================================================================================================================")
+print("\nClass distribution (true to fake): %0.3f\n" % class_distrib)
 print("\nTrue dataset: \n")
 print ("Shape: ", true.shape)
 print(true.head(), "\n")
@@ -30,6 +35,7 @@ print(true.head(), "\n")
 print("Fake dataset: \n")
 print ("Shape: ", fake.shape)
 print(fake.head(), "\n")
+
 
 
 #DATA PREPROCESSING 
@@ -67,7 +73,7 @@ print("vectorizing time: %0.3f" %vectorizing_time)
 
 #DATA SEPERATION:
 #Going for a 80/20 split between train/test 
-X_train, X_test, y_train, y_test = sk.model_selection.train_test_split(tfidf_data, dataset['label'], test_size = 0.2, random_state = 69)
+X_train, X_test, y_train, y_test = sk.model_selection.train_test_split(tfidf_data, dataset['label'], test_size = 0.2, random_state = 50)
 
 
 print("\nNow we have training, validation and test sets:\n")
@@ -85,11 +91,22 @@ clf = skl.SGDClassifier()
 
 #Train the model
 t0 = time()
-res = clf.fit(X_train, y_train.values.ravel())
+clf.fit(X_train, y_train.values.ravel())
 train_time = time() - t0
 print("\nTrain time: %0.3f" % train_time)
 
 #No need for validation, automatically done inside SGD using optimal learning rate
+
+#Training accuracy:
+t0 = time()
+y_train_pred = clf.predict(X_train)
+train_test_time = time() - t0
+print("\nTrain test time: %0.3f" %train_test_time)
+train_score = skm.accuracy_score(y_train_pred, y_train)
+print("Train accuracy: %0.3f" %train_score)
+
+
+
 
 #Run on test set
 t0 = time()
@@ -102,8 +119,8 @@ cmatrix = skm.confusion_matrix(y_test, y_test_pred, labels=[1,-1])
 print("Confusion matrix [True, Fake]:\n ", cmatrix)
 
 #Use accuracy metric
-score = skm.accuracy_score(y_test, y_test_pred)
-print("\nAccuracy: %03f" %score)
+test_score = skm.accuracy_score(y_test, y_test_pred)
+print("\nAccuracy: %03f" %test_score)
 
 
 
