@@ -4,7 +4,7 @@ import csv
 import nltk 
 import sklearn as sk
 import sklearn.feature_extraction.text as ft
-
+import sklearn.linear_model as skl
 
 
 #Data exploration
@@ -79,8 +79,21 @@ tfidf_train = tfidf_vectorizer.fit_transform(X_train)
 tfidf_valid = tfidf_vectorizer.fit_transform(X_valid)
 tfidf_test = tfidf_vectorizer.fit_transform(X_test)
 
-print(tfidf_train)
+#print(tfidf_train)
 
+#USING SGD CLASSIFIER
+#Default loss being a SVM, l2 regularization term, optimal learning rate 
+clf = skl.SGDClassifier()
+
+
+
+res = clf.fit(tfidf_train, y_train.values.ravel())
+
+params = res.get_params()
+
+
+
+#Show confusion matrix
 
 
 
