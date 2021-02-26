@@ -87,7 +87,7 @@ print("y_test = ", y_test.shape)
 #USING SGD CLASSIFIER
 #Default loss being a SVM, l2 regularization term, optimal learning rate (validation set and learning rate testing
 #included in the model)
-clf = skl.SGDClassifier()
+clf = skl.SGDClassifier(early_stopping=True)
 
 #Train the model
 t0 = time()
