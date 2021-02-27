@@ -1,7 +1,5 @@
 # Modules
 import pandas as pd
-import csv
-import nltk
 import sklearn as sk
 import sklearn.feature_extraction.text as ft
 import sklearn.linear_model as skl
