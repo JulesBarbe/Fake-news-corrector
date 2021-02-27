@@ -66,7 +66,7 @@ tfidf_data = tfidf_vectorizer.fit_transform(dataset['text'])
 vectorizing_time = time() - t0
 print("vectorizing time: %0.3f" % vectorizing_time)
 
-# DATA SEPERATION:
+# DATA SEPARATION:
 # Going for a 80/20 split between train/test
 X_train, X_test, y_train, y_test = sk.model_selection.train_test_split(tfidf_data, dataset['label'], test_size=0.2,
                                                                        random_state=50)
