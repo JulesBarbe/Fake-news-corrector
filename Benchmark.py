@@ -1,7 +1,8 @@
 # MODULES
 from time import time
 import pickle
-
+import numpy as np
+from matplotlib import pyplot as plt
 from sklearn.feature_selection import SelectFromModel
 from sklearn.linear_model import RidgeClassifier
 from sklearn.pipeline import Pipeline
@@ -80,6 +81,11 @@ for penalty in ["l2", "l1"]:
 # Train SGD with Elastic Net penalty
 print('=' * 80)
 print("Elastic-Net penalty")
+results.append(benchmark(SGDClassifier(early_stopping=true)))
+
+# Train SGD with original parameters
+print('=' * 80)
+print("Elastic-Net penalty")
 results.append(benchmark(SGDClassifier(alpha=.0001, max_iter=50,
                                        penalty="elasticnet")))
 
@@ -103,3 +109,29 @@ results.append(benchmark(Pipeline([
   ('feature_selection', SelectFromModel(LinearSVC(penalty="l1", dual=False,
                                                   tol=1e-3))),
   ('classification', LinearSVC(penalty="l2"))])))
+
+# PLOT RESULTS TO COMPARE MODELS
+indices = np.arange(len(results))
+
+results = [[x[i] for x in results] for i in range(4)]
+
+clf_names, score, training_time, test_time = results
+training_time = np.array(training_time) / np.max(training_time)
+test_time = np.array(test_time) / np.max(test_time)
+
+plt.figure(figsize=(12, 8))
+plt.title("Score")
+plt.barh(indices, score, .2, label="score", color='navy')
+plt.barh(indices + .3, training_time, .2, label="training time",
+         color='c')
+plt.barh(indices + .6, test_time, .2, label="test time", color='darkorange')
+plt.yticks(())
+plt.legend(loc='best')
+plt.subplots_adjust(left=.25)
+plt.subplots_adjust(top=.95)
+plt.subplots_adjust(bottom=.05)
+
+for i, c in zip(indices, clf_names):
+    plt.text(-.3, i, c)
+
+plt.show()
