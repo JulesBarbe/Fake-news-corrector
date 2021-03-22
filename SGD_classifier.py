@@ -61,7 +61,7 @@ print("Modified dataset with labels: \n", dataset)
 
 #Using the tfidf vectorizer from sklearn, includes stop word_removal
 #Initialize the `tfidf_vectorizer` 
-tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english') 
+tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english', max_features=30000) 
 
 #Process the text in dataset 
 t0 = time()
@@ -81,7 +81,6 @@ print("X_train = ", X_train.shape)
 print("y_train = ", y_train.shape)
 print("X_test = ", X_test.shape)
 print("y_test = ", y_test.shape)
-
 
 
 #USING SGD CLASSIFIER
@@ -104,8 +103,6 @@ train_test_time = time() - t0
 print("\nTrain test time: %0.3f" %train_test_time)
 train_score = skm.accuracy_score(y_train_pred, y_train)
 print("Train accuracy: %0.3f" %train_score)
-
-
 
 
 #Run on test set
