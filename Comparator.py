@@ -5,3 +5,5 @@
 #Take found articles, extract text and run LSA analysis on them as well
 
 #Compute difference as percentage
+
+
