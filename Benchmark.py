@@ -81,7 +81,7 @@ for penalty in ["l2", "l1"]:
 # Train SGD with Elastic Net penalty
 print('=' * 80)
 print("Elastic-Net penalty")
-results.append(benchmark(SGDClassifier(early_stopping=true)))
+results.append(benchmark(SGDClassifier(early_stopping=True)))
 
 # Train SGD with original parameters
 print('=' * 80)
