@@ -59,8 +59,8 @@ dataset = pd.concat([true, fake], ignore_index = True)
 print("Modified dataset with labels: \n", dataset)
 
 #Using the tfidf vectorizer from sklearn, includes stop word_removal
-#Initialize the `tfidf_vectorizer` with stopwords removal and a vocabulary of 30 000
-tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english', max_features=30000) 
+#Initialize the `tfidf_vectorizer` with stopwords removal and a vocabulary of 50 000 
+tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english', max_features=50 000) 
 
 #Process the text in dataset 
 t0 = time()
