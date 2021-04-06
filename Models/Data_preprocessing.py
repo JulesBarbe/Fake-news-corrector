@@ -60,7 +60,7 @@ print("Modified dataset with labels: \n", dataset)
 
 #Using the tfidf vectorizer from sklearn, includes stop word_removal
 #Initialize the `tfidf_vectorizer` with stopwords removal and a vocabulary of 50 000 
-tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english', max_features=50 000) 
+tfidf_vectorizer = ft.TfidfVectorizer(stop_words='english', max_features=50000) 
 
 #Process the text in dataset 
 t0 = time()
@@ -68,6 +68,11 @@ print("Vectorizing:")
 tfidf_data = tfidf_vectorizer.fit_transform(dataset['text'])
 vectorizing_time = time() - t0
 print("vectorizing time: %0.3f" %vectorizing_time)
+
+
+#Save tfidf data
+with open('tfidf_data', 'wb') as file:
+    pickle.dump(tfidf_data, file)
 
 
 #DATA SEPERATION:
