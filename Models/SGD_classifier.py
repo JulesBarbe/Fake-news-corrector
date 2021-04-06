@@ -5,6 +5,7 @@ import sklearn.feature_extraction.text as ft
 import sklearn.linear_model as skl
 import sklearn.metrics as skm
 from time import time
+import pickle
 
 # DATA EXPLORATION:
 
@@ -110,3 +111,7 @@ print("Confusion matrix [True, Fake]:\n ", cmatrix)
 # Use accuracy metric
 test_score = skm.accuracy_score(y_test, y_test_pred)
 print("\nAccuracy: %03f" % test_score)
+
+# Save model 
+with open("SGD_model", "wb") as file: 
+    pickle.dump(clf, file)
