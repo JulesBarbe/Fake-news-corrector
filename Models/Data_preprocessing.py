@@ -38,10 +38,11 @@ print(fake.head(), "\n")
 
 
 #DATA PREPROCESSING 
-#For now I remove the title, but I think it is a very important feature to consider. I also think stop words
-#and punctuation in the title could be significant in a way, so the data pre-processing on it should be different.
-#we could run two algorithms, one for the title and one for the text?
-#either way in the scope of this deliverable we keep only the text.
+"""For now I remove the title, but I think it is a very important feature to consider. I also think stop words
+and punctuation in the title could be significant in a way, so the data pre-processing on it should be different.
+we could run two algorithms, one for the title and one for the text?
+either way in the scope of this deliverable we keep only the text.
+"""
 
 #Remove extra columns (date and subject) from both datasets
 true = true.drop(true.columns[[0,2,3]], axis=1)
