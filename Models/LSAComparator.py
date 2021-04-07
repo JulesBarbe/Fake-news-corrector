@@ -11,7 +11,7 @@ with open('tfidf_data', 'rb') as file:
     data = pickle.load(file)
 
 # Singular Value Decomposition model
-svd_model = TruncatedSVD(n_components=30, algorithm='randomized', n_iter=100, random_state=122)
+svd_model = TruncatedSVD(n_components=100, algorithm='randomized', n_iter=100, random_state=122)
 svd_model.fit(data)
 
 with open("LSA_model", "wb") as file:
