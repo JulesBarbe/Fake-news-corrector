@@ -17,9 +17,11 @@ with open('Models/LSA_model', 'rb') as file:
 
 fn = predict.Fake_news(vectorizer, sgd, lsa)
 
+
 @app.route('/', methods=['GET'])
 def load():
     return render_template('index.html')
+
 
 @app.route('/', methods=['POST'])
 def parse():
@@ -51,6 +53,6 @@ def parse():
 
     
     
-    
-    
+
+
 
