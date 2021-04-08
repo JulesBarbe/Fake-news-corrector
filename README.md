@@ -30,9 +30,29 @@ the current page is a reliable article.
    project  files
 4. Run app.py, installing necessary dependencies as needed
 5. Navigate to the news article you'd like to classify, click on the Fake News 
-   Corrector extension in the Extensions in the top right, and click the button!
+   Corrector extension in the Extensions bar in the top right, and click the button!
    
 ## Repository organization
+Below is a listing of relevant files:
 
+      Fake-news-correcter/   
+      ├─ ChromeExtension/  
+      │  ├─ manifest.json  
+      │  ├─ popup.html  
+      │  ├─ popup.js  
+      ├─ Deliverables/  
+      │  ├─ Data Selection Proposal.pdf  
+      │  ├─ Deliverable2.pdf  
+      │  ├─ Deliverable3.pdf  
+      ├─ Models/  
+      │  ├─ BenchmarkModels
+      │  │  ├─ ...
+      │  ├─ ...
+      ├─ templates  
+      │  ├─ index.html  
+      ├─ app.py  
+      ├─ articles.py
+      ├─ predict.py
+      ├─ README.md  
 
 
