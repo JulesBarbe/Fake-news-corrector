@@ -71,14 +71,16 @@ def predict(url):
 
         for article_url in alt_article_urls:
             alt_article = articles.ArticleData(article_url)
-            alt_topics = fn.get_topics(fn.preprocess(alt_article.get_text()))
+            alt_topics = fn.get_topics(fn.preprocess([alt_article.get_text()]))
             dist = fn.topic_distance(curr_topics, alt_topics)
+            if article_url == url:
+                continue
             if dist < least:
                 # idk how to work with this alt here in python since we dont need to declare it in advance
-                alt = article_url, alt_article.get_summary()
+                alt = article_url
 
         return "<br/>".join(["Article seems unreliable.</br>", "Here is a more reliable source on the same topic:", alt,
-                             "", "Article text: <br/>", "=" * 86, "", text])
+                             "", "Article text: <br/>", "=" * 86, "", alt_article.get_summary()])
 
 
 if __name__ == "__main__":
