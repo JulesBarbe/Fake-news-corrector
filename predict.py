@@ -4,6 +4,7 @@ import sklearn.feature_extraction.text
 import pickle
 import sklearn.linear_model 
 from sklearn.decomposition import TruncatedSVD
+import numpy as np
 
 
 class Fake_news():
@@ -25,5 +26,10 @@ class Fake_news():
     # given tfidf vectors return matrix of corresponding components in SVD dimensionality reduction ("topics")
     def get_topics(self, vector):
         return self.topic_modeler.transform(vector)
+
+    # return euclidean distance between 2 different topic vectors from LSA.
+    def topic_distance(self, vector1, vector2):
+        return np.linalg.norm(np.array(vector1), np.array(vector2))
+
 
     
