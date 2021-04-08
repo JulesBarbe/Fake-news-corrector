@@ -1,8 +1,17 @@
 # Fake-news-corrector
-ML project for McGill's MAIS 202 bootcamp.
+ML project for McGill's Artificial Intelligence Society Machine Learning bootcamp (Winter 2021)
+Training data from Kaggle https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset
 
-Machine learning algorithm with the goal of, when given an article, 
+# Project description
+Web app that classifies news article as fake or not given their url. If deemed fake, it will
+scrape news sites for similar trustworthy articles and return the one with highest topic similarity through Latent Semantic Analysis.
+The results are extremely unereliable, use with caution.
 
-  1. Tell the user if the article is fake news, based on its use of vocabulary, its tone and other factors.
-  
-  2. Give to the user alternate similar articles from trustworthy news sources.
+# Running the app 
+WE NEED TO MAKE A REQUIREMENTS.TXT
+HOW TO RUN WEB APP
+
+# Repository organization
+REPO ORG TREE
+
+
