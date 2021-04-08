@@ -26,8 +26,7 @@ the current page is a reliable article.
 1. Download the project from GitHub
 2. In Google Chrome, open chrome://extensions and enable "Developer mode" in the 
    top right corner    
-3. Click "Load unpacked" and select the ChromeExtension folder within the downloaded 
-   project  files
+3. Click "Load unpacked" and select the ChromeExtension folder within the downloaded project  files
 4. Run app.py, installing necessary dependencies as needed
 5. Navigate to the news article you'd like to classify, click on the Fake News 
    Corrector extension in the Extensions bar in the top right, and click the button!
