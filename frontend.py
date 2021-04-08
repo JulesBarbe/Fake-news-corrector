@@ -10,14 +10,11 @@ def load():
 @app.route('/', methods=['POST'])
 def parse():
     url = request.form['url']
-    print(url)
     article = Article(url)
     article.download()
     article.parse()
 
     text = article.text
-
-    
 
     return article.text
 
