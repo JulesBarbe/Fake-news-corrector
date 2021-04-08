@@ -5,7 +5,6 @@ import pickle
 
 app = Flask(__name__)
 
-
 with open('Models/tfidf_vectorizer', 'rb') as file:
     vectorizer = pickle.load(file)
 
@@ -34,10 +33,10 @@ def parse():
     # not fake news
     if label == 1:
 
-        return "\n\n".join(["Article seems reliable.", "Article text:", "="*86, text])
+        return "\n\n".join(["Article seems reliable.", "Article text:", "=" * 86, text])
 
     # fake news
-    else: 
+    else:
 
         keywords = article.get_keywords()
         date = article.get_date()
@@ -49,10 +48,8 @@ def parse():
         # compare topics among different articles 
 
         # return url, summary of article with least topic distance from curr_topics
-        return "\n\n".join(["Article seems unreliable.", "Article text:", "="*86, text])
-
-    
-    
+        return "\n\n".join(["Article seems unreliable.", "Article text:", "=" * 86, text])
 
 
-
+if __name__ == "__main__":
+    app.run()
