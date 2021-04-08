@@ -5,7 +5,7 @@ import pickle
 from sklearn.decomposition import TruncatedSVD
 
 # unpack tfidf data from preprocessing.py
-with open('tfidf_data', 'rb') as file:
+with open('Models/tfidf_data', 'rb') as file:
     data = pickle.load(file)
 
 # Singular Value Decomposition model
