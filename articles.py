@@ -53,18 +53,3 @@ class ArticleScraper:
             url_list.append(article["url"])
 
         return url_list
-
-
-if __name__ == "__main__":
-    newsapi = NewsApiClient(api_key='6321747c754345d684ff295c8c93cea6')
-    top_headlines = newsapi.get_everything(
-        q="global AND Trump AND Oil",
-        language='en',
-    )
-
-    # print(len(top_headlines["articles"]))
-    # print(top_headlines["articles"][0]["url"])
-
-    a = ArticleScraper("6321747c754345d684ff295c8c93cea6")
-    k = ["a", "b", "c"]
-    print(a.get_articles(k))
