@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import articles
 import predict
 import pickle
- #API key: 6321747c754345d684ff295c8c93cea6 for newsapi
+# API key: 6321747c754345d684ff295c8c93cea6 for newsapi
 
 app = Flask(__name__)
 
@@ -16,7 +16,8 @@ with open('Models/LSA_model', 'rb') as file:
     lsa = pickle.load(file)
 
 fn = predict.Fake_news(vectorizer, sgd, lsa)
-as = articles.ArticleScraper("6321747c754345d684ff295c8c93cea6")
+scraper = articles.ArticleScraper("6321747c754345d684ff295c8c93cea6")
+
 
 @app.route('/', methods=['GET'])
 def load():
@@ -40,19 +41,21 @@ def parse():
     else:
 
         keywords = article.get_keywords()
-        alt_article_urls = as.get_articles(keywords)
+        alt_article_urls = scraper.get_articles(keywords)
         curr_topics = fn.get_topics(ptext)
         
-        least = 2^20    # big value
+        least = float('inf')   # big value
+
+        alt = "No article found"
+        print("Urls: ", alt_article_urls)
 
         for article_url in alt_article_urls:
             alt_article = articles.Article_Data(article_url)
             alt_topics = fn.get_topics(fn.preprocess(alt_article.get_text()))
             dist = fn.topic_distance(curr_topics, alt_topics)
             if dist < least:
-                alt = article_url, alt_article.get_summary()        # idk how to work with this alt here in python since we dont need to declare it in advance
-        
-
+                # idk how to work with this alt here in python since we dont need to declare it in advance
+                alt = article_url, alt_article.get_summary()
 
         return "\n\n".join(["Article seems unreliable.", "Alternate article url:", "=" * 86, alt])
 

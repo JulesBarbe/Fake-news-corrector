@@ -29,7 +29,6 @@ class Fake_news():
 
     # return euclidean distance between 2 different topic vectors from LSA.
     def topic_distance(self, vector1, vector2):
-        return np.linalg.norm(np.array(vector1), np.array(vector2))
+        return np.linalg.norm(np.array(vector1)-np.array(vector2))
 
 
-    
