@@ -6,17 +6,6 @@ import sklearn.linear_model
 from sklearn.decomposition import TruncatedSVD
 
 
-# Get both classifier and SVD models
-with open('Models/tfidf_vectorizer', 'rb') as file:
-    vectorizer = pickle.load(file)
-
-with open('Models/LSA_model', 'rb') as file:
-    lsa = pickle.load(file)
-
-with open('Models/SGD_model', 'rb') as file:
-    sgd = pickle.load(file)
-
-
 class Fake_news():
 
     def __init__(self, vectorizer, classifier, topic_modeler):
