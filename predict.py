@@ -1,7 +1,5 @@
 #Modules
-from sklearn import model_selection
 import sklearn.feature_extraction.text 
-import pickle
 import sklearn.linear_model 
 from sklearn.decomposition import TruncatedSVD
 import numpy as np
