@@ -10,7 +10,7 @@ def load():
 @app.route('/', methods=['POST'])
 def parse():
     url = request.form['url']
-    data = ArticleData(url)
+    data = Article_Data(url)
 
     return data.get_text()
 
