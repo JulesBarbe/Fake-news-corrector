@@ -37,25 +37,35 @@ class ArticleScraper():
     def __init__(self, key):
         self.client = NewsApiClient(key)
 
-    # find articles from keyword array
+    # find article urls from keyword array
     def get_articles(self, keywords):
+        
+        # make keyword list into "keyword1 AND keyword2 AND ..." for newsapi functionality
+        res ="".join(keywords[0])
+        for keyword in keywords[1:]:
+            add = " AND " + keyword
+            res = res + add
 
-            return 0
-
+        articles = self.client.get_everything(q=res, language="en", sort_by="relevancy")
+        
+        url_list = []
+        for article in articles["articles"]:
+            url_list.append(article["url"])
+        
+        return url_list
 
 
 if __name__ == "__main__":
+
     newsapi = NewsApiClient(api_key='6321747c754345d684ff295c8c93cea6')
-    top_headlines = newsapi.get_top_headlines(
-    q="World War",
+    top_headlines = newsapi.get_everything(
+    q="global AND Trump AND Oil",
     language='en',
-)
+    )
 
-    print(top_headlines["articles"][0]["url"])
+    #print(len(top_headlines["articles"]))
+   # print(top_headlines["articles"][0]["url"])
 
-    #https://www.aljazeera.com/economy/2021/4/7/vaccine-policy-is-economic-policy-imf-chief-stresses
-
-    article = Article_Data("https://www.aljazeera.com/economy/2021/4/7/vaccine-policy-is-economic-policy-imf-chief-stresses")
-    print(article.get_date())
-    print(article.get_keywords())
- 
+    a = ArticleScraper("6321747c754345d684ff295c8c93cea6")
+    k = ["a", "b", "c"]
+    print(a.get_articles(k))
