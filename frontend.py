@@ -1,7 +1,21 @@
 from flask import Flask, render_template, request
-from newspaper import Article
+import articles
+import predict
+import pickle
+
 app = Flask(__name__)
 
+
+with open('Models/tfidf_vectorizer', 'rb') as file:
+    vectorizer = pickle.load(file)
+
+with open('Models/SGD_model', 'rb') as file:
+    sgd = pickle.load(file)
+
+with open('Models/LSA_model', 'rb') as file:
+    lsa = pickle.load(file)
+
+fn = predict.Fake_news(vectorizer, sgd, lsa)
 
 @app.route('/', methods=['GET'])
 def load():
@@ -10,11 +24,33 @@ def load():
 @app.route('/', methods=['POST'])
 def parse():
     url = request.form['url']
-    article = Article(url)
-    article.download()
-    article.parse()
+    article = articles.Article_Data(url)
+    text = article.get_text()
+    ptext = fn.preprocess(text)
+    label = fn.classify(ptext)
 
-    text = article.text
+    # not fake news
+    if label == 1:
 
-    return article.text
+        return text
+
+    # fake news
+    else: 
+
+        keywords = article.get_keywords()
+        date = article.get_date()
+
+        # find alternate articles
+
+        curr_topics = fn.get_topics(ptext)
+
+        # compare topics among different articles 
+
+        # return url, summary of article with least topic distance from curr_topics
+        return "BAD"
+
+    
+    
+    
+    
 
