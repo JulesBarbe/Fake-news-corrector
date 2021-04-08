@@ -2,7 +2,6 @@
 
 #Modules
 import pandas as pd
-import csv
 from sklearn import model_selection
 import sklearn.feature_extraction.text as ft
 from time import time
@@ -11,8 +10,8 @@ import pickle
 
 #DATA EXPLORATION:
 
-true = pd.read_csv("True.csv", header=None)
-fake = pd.read_csv("Fake.csv", header=None)
+true = pd.read_csv("Models/True.csv", header=None)
+fake = pd.read_csv("Models/Fake.csv", header=None)
 
 #To clean up, make first row actual headers of dataframe
 true.columns = true.iloc[0]
@@ -99,3 +98,6 @@ with open('y_train', 'wb') as file:
 
 with open('y_test', 'wb') as file:
     pickle.dump(y_test, file)
+
+with open("tfidf_vectorizer", "wb") as file:
+    pickle.dump(tfidf_vectorizer, file)

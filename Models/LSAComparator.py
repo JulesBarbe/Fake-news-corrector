@@ -1,10 +1,8 @@
 # Use LSA on original dataset (would technically work better on a different, bigger dataset)
 # using singular value dcomposition on tfidf vectorized corpus
 
-
 import pickle
 from sklearn.decomposition import TruncatedSVD
-
 
 # unpack tfidf data from preprocessing.py
 with open('tfidf_data', 'rb') as file:
