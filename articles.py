@@ -1,5 +1,5 @@
 from newspaper import Article
-from newsapi import NewsApiClient   #API key: 6321747c754345d684ff295c8c93cea6
+from newsapi.newsapi_client import NewsApiClient   #API key: 6321747c754345d684ff295c8c93cea6
 import nltk
 nltk.download('punkt')
 
