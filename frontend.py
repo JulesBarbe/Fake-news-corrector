@@ -34,7 +34,7 @@ def parse():
     # not fake news
     if label == 1:
 
-        return ", ".join("Article seems reliable.", text)
+        return "\n\n".join(["Article seems reliable.", "Article text:", "="*86, text])
 
     # fake news
     else: 
@@ -49,7 +49,7 @@ def parse():
         # compare topics among different articles 
 
         # return url, summary of article with least topic distance from curr_topics
-        return "BAD"
+        return "\n\n".join(["Article seems unreliable.", "Article text:", "="*86, text])
 
     
     
