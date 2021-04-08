@@ -1,3 +1,5 @@
+# original file for initial data exploration and SGD training. Turns out the first model we chose was the one with the best results
+
 # Modules
 import pandas as pd
 import sklearn as sk
