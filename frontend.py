@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from newspaper import Article
+from articles import *
 app = Flask(__name__)
 
 
@@ -10,11 +10,7 @@ def load():
 @app.route('/', methods=['POST'])
 def parse():
     url = request.form['url']
-    article = Article(url)
-    article.download()
-    article.parse()
+    data = ArticleData(url)
 
-    text = article.text
-
-    return article.text
+    return data.get_text()
 
