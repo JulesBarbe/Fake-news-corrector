@@ -1,6 +1,7 @@
 from newspaper import Article
 from newsapi.newsapi_client import NewsApiClient  # API key: 6321747c754345d684ff295c8c93cea6
 import nltk
+import sys
 
 nltk.download('punkt')
 
@@ -45,7 +46,7 @@ class ArticleScraper:
         for keyword in keywords[1:]:
             add = " AND " + keyword
             res = res + add
-
+      
         articles = self.client.get_everything(q=res, language="en", sort_by="relevancy")
 
         url_list = []
