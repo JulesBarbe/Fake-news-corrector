@@ -5,7 +5,7 @@ import nltk
 nltk.download('punkt')
 
 
-class Article_Data():
+class ArticleData:
 
     def __init__(self, url):
         article = Article(url)
@@ -32,7 +32,7 @@ class Article_Data():
         return self.summary
 
 
-class ArticleScraper():
+class ArticleScraper:
 
     def __init__(self, key):
         self.client = NewsApiClient(key)

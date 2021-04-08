@@ -5,7 +5,7 @@ from sklearn.decomposition import TruncatedSVD
 import numpy as np
 
 
-class Fake_news():
+class FakeNews:
 
     def __init__(self, vectorizer, classifier, topic_modeler):
 

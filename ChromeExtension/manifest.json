@@ -1,0 +1,14 @@
+{
+    "manifest_version": 2,
+
+    "name": "Fake News Corrector",
+    "description": "This extension will analyze text article and recommend alternate sources if text is deemed untrustworthy.",
+    "version": "1.0",
+
+    "browser_action": {
+     "default_popup": "popup.html"
+    },
+    "permissions": [
+     "activeTab", "http://localhost/", "tabs"
+     ]
+}
