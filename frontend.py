@@ -26,7 +26,7 @@ def parse():
     url = request.form['url']
     article = articles.Article_Data(url)
     text = article.get_text()
-    ptext = fn.preprocess(text)
+    ptext = fn.preprocess([text])
     label = fn.classify(ptext)
 
     # not fake news
