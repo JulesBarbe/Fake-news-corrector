@@ -11,7 +11,7 @@ class Fake_news():
 
     def __init__(self, vectorizer, classifier, topic_modeler):
 
-        self.model = vectorizer
+        self.vectorizer = vectorizer
         self.classifier = classifier
         self.topic_modeler = topic_modeler
 
