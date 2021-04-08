@@ -34,7 +34,7 @@ def parse():
     # not fake news
     if label == 1:
 
-        return text
+        return ", ".join("Article seems reliable.", text)
 
     # fake news
     else: 
