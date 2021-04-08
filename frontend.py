@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import articles
 import predict
 import pickle
+ #API key: 6321747c754345d684ff295c8c93cea6 for newsapi
 
 app = Flask(__name__)
 
@@ -15,7 +16,7 @@ with open('Models/LSA_model', 'rb') as file:
     lsa = pickle.load(file)
 
 fn = predict.Fake_news(vectorizer, sgd, lsa)
-
+as = articles.ArticleScraper("6321747c754345d684ff295c8c93cea6")
 
 @app.route('/', methods=['GET'])
 def load():
@@ -39,16 +40,21 @@ def parse():
     else:
 
         keywords = article.get_keywords()
-        date = article.get_date()
-
-        # find alternate articles
-
+        alt_article_urls = as.get_articles(keywords)
         curr_topics = fn.get_topics(ptext)
+        
+        least = 2^20    # big value
 
-        # compare topics among different articles 
+        for article_url in alt_article_urls:
+            alt_article = articles.Article_Data(article_url)
+            alt_topics = fn.get_topics(fn.preprocess(alt_article.get_text()))
+            dist = fn.topic_distance(curr_topics, alt_topics)
+            if dist < least:
+                alt = article_url, alt_article.get_summary()        # idk how to work with this alt here in python since we dont need to declare it in advance
+        
 
-        # return url, summary of article with least topic distance from curr_topics
-        return "\n\n".join(["Article seems unreliable.", "Article text:", "=" * 86, text])
+
+        return "\n\n".join(["Article seems unreliable.", "Alternate article url:", "=" * 86, alt])
 
 
 if __name__ == "__main__":
