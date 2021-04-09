@@ -31,6 +31,15 @@ the current page is a reliable article.
 5. Navigate to the news article you'd like to classify, click on the Fake News 
    Corrector extension in the Extensions bar in the top right, and click the button!
    
+### Dependencies:
+1. For the newspaper/Article library, run
+
+         pip3 install newspaper3k
+      
+2. For the News API, run 
+
+         pip install newsapi-python
+   
 ## Repository organization
 Below is a listing of relevant files:
 
