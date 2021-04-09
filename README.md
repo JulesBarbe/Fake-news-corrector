@@ -3,12 +3,16 @@ ML project for the McGill Artificial Intelligence Society's machine
 learning bootcamp (MAIS 202, Winter 2021). Training data from Kaggle:
 https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset.
 
+![Fake News Detector - home screen with text field for URL](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector2.png)
+![Fake News Detector - results for fake article](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector1.png)
+![Fake News Detector - Chrome extension visuals](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector3.png)
+
 ## Project description
 This web app classifies news articles as fake or not given their URL. 
 If the article is deemed fake, it will scrape news sites for trustworthy 
 articles on a similar topic and return the one with the highest topic similarity 
 through Latent Semantic Analysis. Due to limitations of the original 
-dataset, results are unreliable - use with caution!
+dataset, results are not always reliable - use with caution!
 
 ## Running the app 
 This web app is available in two flavours: as a pure Flask web app that
@@ -18,7 +22,7 @@ the current page is a reliable article.
 
 ### Web app:
 1. Download the project from GitHub
-2. Run app.py, installing necessary dependencies as needed
+2. Run app.py, installing necessary dependencies as needed (see below)
 3. Click the link that appears in the console or navigate to http://localhost:5000
 4. Paste the URL of the article you'd like to classify into the text box!
 
@@ -27,7 +31,7 @@ the current page is a reliable article.
 2. In Google Chrome, open chrome://extensions and enable "Developer mode" in the 
    top right corner    
 3. Click "Load unpacked" and select the ChromeExtension folder within the downloaded project  files
-4. Run app.py, installing necessary dependencies as needed
+4. Run app.py, installing necessary dependencies as needed (see below)
 5. Navigate to the news article you'd like to classify, click on the Fake News 
    Corrector extension in the Extensions bar in the top right, and click the button!
    
@@ -57,7 +61,9 @@ Below is a listing of relevant files:
       │  │  ├─ ...
       │  ├─ ...
       ├─ templates  
-      │  ├─ index.html  
+      │  ├─ home.html  
+      │  ├─ fake.html
+      │  ├─ true.html
       ├─ app.py  
       ├─ articles.py
       ├─ predict.py
