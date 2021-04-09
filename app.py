@@ -4,8 +4,8 @@ import predict
 import pickle
 import sys
 
-api_key = "a3fb78e592df4927b3014f97d193cd42" # this is Zahur's
-# API key: 6321747c754345d684ff295c8c93cea6 for newsapi
+api_key = "a3fb78e592df4927b3014f97d193cd42"  # this is Zahur's; not yet rate-limited
+# API key: 6321747c754345d684ff295c8c93cea6 for newsapi - this one got rate-limited
 graham = "The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as " \
          "it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed " \
          "starts slowly but gets faster each minute after you hear this signal bodeboop. A sing lap should be " \
