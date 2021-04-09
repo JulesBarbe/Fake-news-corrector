@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Fake News Detector</title>
+    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+    <style>
+      .submit {
+        background-color: white;
+        transition: 0.6s
+      }
+      .submit:hover {
+        background-color: #ffe3e3;
+      }
+      input:focus {
+        outline: none !important;
+        border-color: #ffe3e3;
+        box-shadow: 0 0 10px #ffe3e3;
+      }
+      textarea:focus {
+          outline: none !important;
+          border-color: #ffe3e3;
+          box-shadow: 0 0 10px #ffe3e3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"
+         style="margin-top: 50px; margin-left: 50px">
+      <h1>Fake News Detector</h1>
+      <p>Enter the url of an article below and we'll check whether
+      it seems reliable: </p>
+      <form method="post">
+        <input name="url">
+        <input class="submit" type="submit">
+      </form>
+    </div>
+  </body>
+</html>

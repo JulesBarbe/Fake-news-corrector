@@ -2,10 +2,19 @@
 <html>
   <head>
     <title>Fake News Corrector</title>
+    <style>
+      .button {
+        background-color: white;
+        transition: 0.6s
+      }
+      .button:hover {
+        background-color: #ffe3e3;
+      }
+    </style>
   </head>
-  <body>
+  <body style="font-family: 'Ubuntu', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', sans-serif">
     <h1 id="h">Fake News Detector</h1>
-    <button id="checkPage">
+    <button class="button" id="checkPage" style="border-radius: 10px">
         Is this article fake news?
     </button>
   </body>

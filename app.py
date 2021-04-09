@@ -4,8 +4,14 @@ import predict
 import pickle
 import sys
 
+api_key = "a3fb78e592df4927b3014f97d193cd42" # this is Zahur's
 # API key: 6321747c754345d684ff295c8c93cea6 for newsapi
-graham = "The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly but gets faster each minute after you hear this signal bodeboop. A sing lap should be completed every time you hear this sound. ding Remember to run in a straight line and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark. Get ready!… Start."
+graham = "The FitnessGram Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as " \
+         "it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed " \
+         "starts slowly but gets faster each minute after you hear this signal bodeboop. A sing lap should be " \
+         "completed every time you hear this sound. ding Remember to run in a straight line and run as long as " \
+         "possible. The second time you fail to complete a lap before the sound, your test is over. The test will " \
+         "begin on the word start. On your mark. Get ready!… Start. "
 
 # Launch Flask app
 app = Flask(__name__)
@@ -22,13 +28,13 @@ with open('Models/LSA_model', 'rb') as file:
 
 # Create FakeNews and ArticleScraper objects
 fn = predict.FakeNews(vectorizer, sgd, lsa)
-scraper = articles.ArticleScraper("6321747c754345d684ff295c8c93cea6")
+scraper = articles.ArticleScraper(api_key)
 
 
 # GET and POST for normal Flask operation: user inputs url through textbox
 @app.route('/', methods=['GET'])
 def load():
-    return render_template('index.html')
+    return render_template('home.html')
 
 
 @app.route('/', methods=['POST'])
@@ -46,7 +52,7 @@ def load_external():
 
 @app.route('/external', methods=['POST'])
 def get_request():
-    return render_template("index.html")
+    return render_template("home.html")
 
 
 # Prediction function
@@ -58,7 +64,7 @@ def predict(url):
 
     # not fake news
     if label == 1:
-        return "\n\n".join(["Article seems reliable.", "Article text:", "=" * 86, text])
+        return render_template("true.html", text=text)
 
     # fake news
     else:
@@ -103,9 +109,9 @@ def predict(url):
                 continue
 
             # only return "unfake" articles (unecessary with the quality of our classifier :)))) )
-            # if fn.classify(alt_text) == -1:
-            #    print("Skipped alternate article", file=sys.stderr)
-            #    continue
+            if fn.classify(alt_text) == -1:
+                print("Skipped alternate article", file=sys.stderr)
+                continue
 
             # replace if minimum distance
             if dist < least:
@@ -116,14 +122,10 @@ def predict(url):
 
         # if no alternate article found
         if alt == 0:
-            return "<br/>".join(
-                ["Alternate seems unreliable, but no alternate article was found.</br>", "Enjoy this instead:",
-                 "=" * 86, graham])
-
+            alt_text = "No alternate article was found. Enjoy this instead: " + graham
+            return render_template("fake.html", text=text, alt_url="<No url found.>", alt_text=alt_text)
         else:
-            return "<br/>".join(
-                ["Article seems unreliable.</br>", "Here is a more reliable source on the same topic:", alt,
-                 "", "Article text: <br/>", "=" * 86, "", res_article.get_summary()])
+            return render_template("fake.html", text=text, alt_url=alt, alt_text=res_article.get_summary())
 
 
 if __name__ == "__main__":

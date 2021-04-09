@@ -1,3 +1,21 @@
+Fake-Good Pairs:
+1. (Decent example)
+    Fake: https://www.breitbart.com/2nd-amendment/2021/04/08/joe-biden-declares-no-amendment-to-the-constitution-is-absolute-in-gun-control-speech/
+    Good: https://www.huffpost.com/entry/biden-executive-orders-gun-violence_n_605e1737c5b65d1c28154a2a
+2. (Somewhat funny example)
+    Fake: https://www.infowars.com/posts/alex-jones-returns-from-border-with-firsthand-account-of-human-smuggling-operation/
+    Good: http://www.bay12games.com/dwarves/index.html#2021-03-08
+3. (Same topic but original source was already reliable)
+    Fake: https://apnews.com/article/derek-chauvin-trial-expert-lack-of-oxygen-killed-floyd-b1092d8b70ea934776161355fdf171a4
+    Good: https://www.france24.com/en/americas/20210408-george-floyd-died-from-lack-of-oxygen-not-drugs-doctor-testifies
+4. (Same topic but original source was already reliable)
+    Fake: https://nationalpost.com/news/world/doctor-wife-two-grandchildren-among-five-dead-in-south-carolina-shooting
+    Good: https://theweek.com/speedreads/976307/former-nfl-player-reportedly-identified-suspect-south-carolina-shooting
+5. (Same topic but original article was relatively reliable even if it's from Fox News which is unreliable)
+    Fake: https://www.foxnews.com/sports/nfl-phillip-adams-south-carolina-shooting-suspect
+    Good: https://www.wsoctv.com/news/local/who-is-phillip-adams-former-nfl-player-accused-york-county-mass-shooting/R3CQ4STMBBBZBNKNTOIWHDZAVQ/
+
+
 Good:
 https://www.cnn.com/2021/04/07/americas/canada-ontario-stay-at-home-intl/index.html
 https://www.cnn.com/2021/04/07/politics/washington-voting-rights-parolees/index.html
