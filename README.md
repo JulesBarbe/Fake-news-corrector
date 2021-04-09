@@ -5,7 +5,7 @@ https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset.
 
 ![Fake News Detector - home screen with text field for URL](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector2.png)
 ![Fake News Detector - results for fake article](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector1.png)
-![Fake News Detector - Chrome extension visuals](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector3.png)
+![Fake News Detector - Chrome extension visuals](https://github.com/JulesBarbe/Fake-news-corrector/blob/main/Images/fake%20news%20detector4.png)
 
 ## Project description
 This web app classifies news articles as fake or not given their URL. 
