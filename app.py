@@ -64,12 +64,12 @@ def predict(url):
     else:
         # get keyword list from current article
         keywords = article.get_keywords()[:5]
-        print("Number of keywords: " + str(len(keywords)), file = sys.stderr)
+        print("Number of keywords: " + str(len(keywords)), file=sys.stderr)
 
         # get alternate articles using keywords
         alt_article_urls = scraper.get_articles(keywords)
-        print("Number of articles found: " + str(len(alt_article_urls)), file = sys.stderr)
-        
+        print("Number of articles found: " + str(len(alt_article_urls)), file=sys.stderr)
+
         # get LSA topics of current article to compare to alternate choices
         curr_topics = fn.get_topics(ptext)
 
@@ -78,14 +78,15 @@ def predict(url):
         alt = 0
         res_article = article
         n = 0
+        alt_article = None
 
         for article_url in alt_article_urls:
 
             n += 1
-            print("Article " +str(n), file=sys.stderr)
+            print("Article " + str(n), file=sys.stderr)
 
             # in case alternate article can't be downloaded
-            try: 
+            try:
                 alt_article = articles.ArticleData(article_url)
             except:
                 print("Skipped downloading alternate article", file=sys.stderr)
@@ -95,17 +96,17 @@ def predict(url):
             alt_text = fn.preprocess([alt_article.get_text()])
             alt_topics = fn.get_topics(alt_text)
             dist = fn.topic_distance(curr_topics, alt_topics)
-            
+
             # don't return same article
             if article_url == url:
                 print("Same url", file=sys.stderr)
                 continue
-            
+
             # only return "unfake" articles (unecessary with the quality of our classifier :)))) )
-            #if fn.classify(alt_text) == -1:
+            # if fn.classify(alt_text) == -1:
             #    print("Skipped alternate article", file=sys.stderr)
             #    continue
-            
+
             # replace if minimum distance
             if dist < least:
                 least = dist
@@ -115,11 +116,14 @@ def predict(url):
 
         # if no alternate article found
         if alt == 0:
-            return "<br/>".join(["Alternate seems unreliable, but no alternate article was found.</br>", "Enjoy this instead:", "=" * 86, graham])
-        
+            return "<br/>".join(
+                ["Alternate seems unreliable, but no alternate article was found.</br>", "Enjoy this instead:",
+                 "=" * 86, graham])
+
         else:
-            return "<br/>".join(["Article seems unreliable.</br>", "Here is a more reliable source on the same topic:", alt,
-                             "", "Article text: <br/>", "=" * 86, "", res_article.get_summary()])
+            return "<br/>".join(
+                ["Article seems unreliable.</br>", "Here is a more reliable source on the same topic:", alt,
+                 "", "Article text: <br/>", "=" * 86, "", res_article.get_summary()])
 
 
 if __name__ == "__main__":
