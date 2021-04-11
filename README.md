@@ -14,27 +14,24 @@ articles on a similar topic and return the one with the highest topic similarity
 through Latent Semantic Analysis. Due to limitations of the original 
 dataset, results are not always reliable - use with caution!
 
-## Running the app 
-This web app is available in two flavours: as a pure Flask web app that
-allows a user to paste in an article's URL to have its reliability judged,
-or as a Google Chrome extension using the Flask app as a backend that allows a user to check whether or not 
+## Running the app online through Heroku
+This web app is available as a pure Flask web app hosted on Heroku that allows a user to paste in an article's URL to have its reliability judged,
+and as a Google Chrome extension using the Flask app as a backend that allows a user to check whether or not 
 the current page is a reliable article.
 
-### Web app:
-1. Download the project from GitHub
-2. Run app.py, installing necessary dependencies as needed (see below)
-3. Click the link that appears in the console or navigate to http://localhost:5000
-4. Paste the URL of the article you'd like to classify into the text box!
+### Web app
+To run the webapp, simply go to https://fake-news-corrector.herokuapp.com and enter the URL of the article you'd like
+to judge the reliability of. No downloads necessary!
 
-### Chrome extension:
-1. Download the project from GitHub
+### Chrome extension
+To run the Chrome Extension:
+1. First download the "ChromeExtension" folder from this Github.
 2. In Google Chrome, open chrome://extensions and enable "Developer mode" in the 
    top right corner    
-3. Click "Load unpacked" and select the ChromeExtension folder within the downloaded project  files
-4. Run app.py, installing necessary dependencies as needed (see below)
-5. Navigate to the news article you'd like to classify, click on the Fake News 
-   Corrector extension in the Extensions bar in the top right, and click the button!
-   
+3. Click "Load unpacked" and select the ChromeExtension folder.
+4. Navigate to the article you'd like to judge the reliability of.
+5. Click the Fake News Corrector extension in the Extensions bar in the top right of the Google Chrome window to get your results!
+
 ### Dependencies:
 1. For the newspaper/Article library, run
 
